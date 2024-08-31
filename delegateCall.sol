@@ -21,6 +21,9 @@ A ---> B ---> C
 
 */
 
+// delegatecall allows a contract to execute another contract's code in its own context. This means that the state changes occur in the calling contract, not the called contract.
+
+
 
 
 contract TestDelegateCall{
@@ -32,13 +35,13 @@ contract TestDelegateCall{
 
     function setVar(uint _num)external payable {
         num=2*_num;
-        sender=msg.sender;      // i can do any change function logic in this contract and redeploy it many times
+        sender=msg.sender;      // i can create any changes in function's logic in this contract and redeploy it many times
         val=msg.value;
     }
 }
 
 
-contract DelegateCall{      // this contract will be stable, we'll use the address and var to find the output from the redeployed contract
+contract DelegateCall{      // this contract will be stable, we'll use the address and param to find the output from the redeployed contract
     uint public num;
     address public sender;      // in using delegateCall all state var should be in chronological order as the above contract
     uint public val;
